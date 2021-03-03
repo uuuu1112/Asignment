@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignment Week 2</title>
+    <script type="text/javascript">
+
+         function avg(data){
+            var sum=0;
+            for (i=0;i<data["count"];i++){
+                sum=sum+data["employees"][i]["salary"]
+            }return sum
+        }
+
+        console.log(avg({"count":3,"employees":[{"name":"John","salary":30000},{"name":"Bob","salary":60000},{"name":"Jenny","salary":50000}]}));
+
+        function maxProduct(nums){
+            var maxproduct=nums[0]*nums[1];
+            for (i=0;i<nums.length;i++){
+                for(j=0;j<nums.length;j++){
+                    if(i != j){
+                        product=nums[i]*nums[j];
+                        if (product>=maxproduct){
+                            maxproduct=product;
+                        }
+                    }
+                }
+            }return maxproduct
+        }
+
+        console.log(maxProduct([5,20,2,6]));
+        console.log(maxProduct([10,-20,0,3]));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
