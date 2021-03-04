@@ -21,7 +21,7 @@
             var sum=0;
             for (i=0;i<data["count"];i++){
                 sum=sum+data["employees"][i]["salary"]
-            }return sum
+            }return sum/data["count"]
         }
         console.log(avg({"count":3,"employees":[{"name":"John","salary":30000},{"name":"Bob","salary":60000},{"name":"Jenny","salary":50000}]}));
 
