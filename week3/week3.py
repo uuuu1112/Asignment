@@ -9,4 +9,4 @@ with request.urlopen(src) as response:
 clist=data["result"]["results"]
 with open("data.txt","w",encoding="utf-8") as file:
     for viewpoint in clist:
-        file.write(viewpoint["stitle"]+","+viewpoint["longitude"]+","+viewpoint["latitude"]+","+viewpoint["file"].replace("jpg","jpg#").split("#")[0]+"\n")
+        file.write(viewpoint["stitle"]+","+viewpoint["longitude"]+","+viewpoint["latitude"]+","+viewpoint["file"].replace("http:","#http:").split("#")[1]+"\n")
