@@ -29,4 +29,17 @@ select * from user where username="ply" and password="ply";
 
 ![image](https://user-images.githubusercontent.com/54828912/112371819-035c9f80-8d1a-11eb-8bf3-5015065c173d.png)
 
+set SQL_SAFE_UPDATES=0;
+update user 
+set name="丁滿" 
+WHERE username="ply";
+
+![image](https://user-images.githubusercontent.com/54828912/112443805-5705d200-8d88-11eb-8947-08b74472d4d7.png)
+
+delete from user;
+
+![image](https://user-images.githubusercontent.com/54828912/112444210-c4196780-8d88-11eb-9c55-766e5e1e9704.png)
+
+
+
 
