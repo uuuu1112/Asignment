@@ -1,9 +1,6 @@
 import mysql.connector
 from flask import Flask,request,redirect
 from flask import render_template,session
-myresult1=[] #帳號字串
-myresult2=[] #帳號密碼字串
-
 
 
 mydb=mysql.connector.connect(
@@ -25,11 +22,10 @@ def index():
 
 @app.route("/signup" ,methods=["POST"])
 def signup():
-    mycursor.execute("select * from customers")
-    myresult=mycursor.fetchall()
-    for user in myresult:
-        myresult1.append(user[1])
-    if request.form["upname"] in myresult1:
+    mycursor.execute("select * from customers where username=%s",(request.form["upname"],))
+    myresult=mycursor.fetchone()
+
+    if myresult:
         return redirect("/error?message=帳號已經被註冊")
     else:
         sql="insert into customers(name,username,password) values (%s,%s,%s)"
@@ -40,11 +36,10 @@ def signup():
 
 @app.route("/signin" ,methods=["POST"])
 def signin():
-    mycursor.execute("select * from customers")
-    myresult=mycursor.fetchall()
-    for user in myresult:
-        myresult2.append([user[1],user[2]])
-    if [request.form["inname"],request.form["inkey"]] in myresult2:
+    mycursor.execute("select * from customers where username=%s and password=%s",(request.form["inname"],request.form["inkey"],))
+    myresult=mycursor.fetchone()
+
+    if myresult:
         session['iname']=request.form["inname"]
         session['ikey']=request.form["inkey"]
         return redirect("/member")
@@ -59,18 +54,13 @@ def signout():
 
 @app.route("/member")
 def member():
-    mycursor.execute("select * from customers")
-    myresult=mycursor.fetchall()
-    for user in myresult:
-        myresult2.append([user[1],user[2]])
     if 'iname' not in session or 'ikey' not in session:
         return redirect("/")
-    elif [session['iname'],session['ikey']] in myresult2:
-        for user in myresult:
-            if session['iname']==user[1] and session['ikey']==user[2]:
-                return render_template("member.html",name=user[0])
     else:
-        return redirect("/")
+        mycursor.execute("select * from customers where username=%s",(session["iname"],))
+        myresult=mycursor.fetchone()
+        return render_template("member.html",name=myresult[0])
+
 
 @app.route("/error")
 def error():
