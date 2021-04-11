@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in page</title>
+</head>
+<body>
+    <h3>歡迎光臨，請註冊登入系統</h3>
+    <h4>註冊帳號</h4>
+    <form action="/signup" method="POST">
+        姓名 <input type="text" name="name"/>
+        <br>
+        帳號 <input type="text" name="upname"/>
+        <br>
+        密碼 <input type="text" name="upkey"/>
+        <br>
+        <button>註冊</button>
+    </form>
+    <hr>
+
+    <h4>登入系統</h4>
+    <form action="/signin" method="POST">
+        帳號 <input type="text" name="inname"/>
+        <br>
+        密碼 <input type="text" name="inkey"/>
+        <br>
+        <button>登入</button>
+    </form>
+</body>
+</html>
