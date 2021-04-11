@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Page</title>
+
+</head>
+<body>
+    <h3>歡迎光臨，這是會員頁</h3>
+    <h4>{{name}}，歡迎登入系統</h4>
+    <a href="/signout">登出系統</a>
+    <br>
+
+    <h4>查詢會員姓名</h4>
+
+    <div class="form">
+        <input type="text" id="searchname"/>
+        <button type="submit" id="btn-submit">查詢</button>
+    </div>
+
+    <div id="content"></div>
+
+
+    <script>
+        const form={
+            searchname:document.getElementById("searchname"),
+            submit:document.getElementById("btn-submit")
+        };
+
+        form.submit.addEventListener('click', () => {
+            const request = new XMLHttpRequest();
+            request.open('get','http://127.0.0.1:3000/api/users?username='+form.searchname.value);
+            request.onload = ()=> {
+                document.getElementById('content').innerHTML=JSON.parse(request.responseText)["data"]["name"];
+            };
+            request.send();
+        });
+    </script>
+
+
+</body>
+</html>
